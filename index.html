@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전국 대학 입학처 링크 (117개)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f5f0;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #6b6b6b;
+      --border: #e0ddd5;
+      --accent: #2d5a27;
+      --accent-light: #e8f0e6;
+      --national: #1a5276;
+      --national-bg: #d4e6f1;
+      --public: #1e8449;
+      --public-bg: #d5f5e3;
+      --private: #7d3c98;
+      --private-bg: #ebdef0;
+      --other: #6b6b6b;
+      --other-bg: #eee;
+      --hover: #fafaf5;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-lg: 0 4px 20px rgba(0,0,0,0.08);
+      --radius: 8px;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1a3a1a 0%, #2d5a27 50%, #3a6b34 100%);
+      color: #fff;
+      padding: 2.5rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .header h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.35rem; }
+    .header p { font-size: 0.9rem; opacity: 0.8; font-weight: 300; }
+    .header .stat {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.8rem;
+      margin-top: 0.75rem;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+    }
+
+    .search-bar {
+      max-width: 1200px;
+      margin: -1.25rem auto 0;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 10;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 0.85rem 1.25rem 0.85rem 2.75rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: var(--surface);
+      box-shadow: var(--shadow-lg);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .search-bar input:focus { border-color: var(--accent); box-shadow: var(--shadow-lg), 0 0 0 3px var(--accent-light); }
+    .search-bar input::placeholder { color: #aaa; }
+    .search-bar .icon {
+      position: absolute; left: 2.4rem; top: 50%; transform: translateY(-50%);
+      color: #aaa; pointer-events: none;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+
+    .filter-group { margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.6rem; }
+    .filter-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      flex-shrink: 0;
+      min-width: 2.5rem;
+    }
+    .tabs-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      flex: 1;
+    }
+    .tabs-wrap::-webkit-scrollbar { display: none; }
+    .tabs {
+      display: flex;
+      gap: 0.35rem;
+      white-space: nowrap;
+      padding: 0.25rem 0;
+    }
+    .tab-btn {
+      padding: 0.45rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--surface);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-shrink: 0;
+    }
+    .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .region-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .region-tab.active .badge { background: rgba(255,255,255,0.25); color: #fff; }
+
+    .type-tab.active[data-type="전체"] { background: #555; color: #fff; border-color: #555; }
+    .type-tab.active[data-type="전체"] .badge { background: rgba(255,255,255,0.25); color: #fff; }
+    .type-tab.active[data-type="국립"] { background: var(--national); color: #fff; border-color: var(--national); }
+    .type-tab.active[data-type="국립"] .badge { background: rgba(255,255,255,0.25); color: #fff; }
+    .type-tab.active[data-type="공립"] { background: var(--public); color: #fff; border-color: var(--public); }
+    .type-tab.active[data-type="공립"] .badge { background: rgba(255,255,255,0.25); color: #fff; }
+    .type-tab.active[data-type="사립"] { background: var(--private); color: #fff; border-color: var(--private); }
+    .type-tab.active[data-type="사립"] .badge { background: rgba(255,255,255,0.25); color: #fff; }
+
+    .badge {
+      font-size: 0.68rem;
+      background: #eee;
+      color: var(--text-muted);
+      padding: 0.1rem 0.4rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .result-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      padding-left: 0.25rem;
+    }
+    .result-count strong { color: var(--text); }
+
+    .table-wrap {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: fadeIn 0.25s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: #fafaf5;
+      padding: 0.7rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    tbody tr { border-bottom: 1px solid #f0ede5; transition: background 0.15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--hover); }
+    tbody tr.hidden-row { display: none; }
+    td { padding: 0.65rem 1rem; font-size: 0.9rem; vertical-align: middle; }
+
+    .cell-num { width: 3rem; text-align: center; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+    .cell-name { font-weight: 600; white-space: nowrap; }
+    .cell-region { width: 4rem; }
+    .cell-type { width: 4rem; }
+    .cell-link a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-family: 'JetBrains Mono', monospace;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.15s;
+      word-break: break-all;
+    }
+    .cell-link a:hover { color: #1a3a1a; text-decoration: underline; }
+    .cell-link svg { flex-shrink: 0; opacity: 0.5; }
+
+    .tag {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .tag-national { background: var(--national-bg); color: var(--national); }
+    .tag-public { background: var(--public-bg); color: var(--public); }
+    .tag-private { background: var(--private-bg); color: var(--private); }
+    .tag-other { background: var(--other-bg); color: var(--other); }
+
+    .region-label {
+      display: inline-block;
+      padding: 0.1rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: #f0ede5;
+      color: var(--text-muted);
+    }
+
+    .th-num { width: 3rem; text-align: center; }
+    .th-type { width: 5rem; }
+    .th-region { width: 4.5rem; }
+
+    .no-results {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .footer { text-align: center; padding: 2rem 1rem; font-size: 0.78rem; color: #aaa; }
+
+    @media (max-width: 768px) {
+      .header { padding: 2rem 1rem 1.5rem; }
+      .header h1 { font-size: 1.35rem; }
+      .search-bar { padding: 0 1rem; }
+      .container { padding: 1rem; }
+      .filter-group { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+      .filter-label { min-width: auto; }
+      .cell-link a { font-size: 0.75rem; }
+      td { padding: 0.5rem 0.6rem; font-size: 0.82rem; }
+      thead th { padding: 0.5rem 0.6rem; font-size: 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-inner">
+      <h1>🎓 전국 대학 입학처 링크</h1>
+      <p>전국 117개 대학 입학처 홈페이지 바로가기</p>
+      <span class="stat">16개 지역 · 국립 27 · 공립 2 · 사립 88</span>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="search" placeholder="대학명, 지역, URL로 검색...">
+  </div>
+
+  <div class="container">
+    <div class="filter-group">
+      <span class="filter-label">지역</span>
+      <div class="tabs-wrap">
+        <div class="tabs" id="regionTabs">
+        <button class="tab-btn region-tab active" data-region="전체">전체 <span class="badge">117</span></button>
+        <button class="tab-btn region-tab" data-region="서울">서울 <span class="badge">32</span></button>
+        <button class="tab-btn region-tab" data-region="경기">경기 <span class="badge">15</span></button>
+        <button class="tab-btn region-tab" data-region="인천">인천 <span class="badge">2</span></button>
+        <button class="tab-btn region-tab" data-region="강원">강원 <span class="badge">6</span></button>
+        <button class="tab-btn region-tab" data-region="충북">충북 <span class="badge">3</span></button>
+        <button class="tab-btn region-tab" data-region="충남">충남 <span class="badge">9</span></button>
+        <button class="tab-btn region-tab" data-region="대전">대전 <span class="badge">6</span></button>
+        <button class="tab-btn region-tab" data-region="전북">전북 <span class="badge">4</span></button>
+        <button class="tab-btn region-tab" data-region="전남">전남 <span class="badge">5</span></button>
+        <button class="tab-btn region-tab" data-region="광주">광주 <span class="badge">5</span></button>
+        <button class="tab-btn region-tab" data-region="경북">경북 <span class="badge">8</span></button>
+        <button class="tab-btn region-tab" data-region="경남">경남 <span class="badge">10</span></button>
+        <button class="tab-btn region-tab" data-region="부산">부산 <span class="badge">7</span></button>
+        <button class="tab-btn region-tab" data-region="울산">울산 <span class="badge">2</span></button>
+        <button class="tab-btn region-tab" data-region="제주">제주 <span class="badge">2</span></button>
+        <button class="tab-btn region-tab" data-region="대구">대구 <span class="badge">1</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">구분</span>
+      <div class="tabs-wrap">
+        <div class="tabs" id="typeTabs">
+        <button class="tab-btn type-tab active" data-type="전체">전체 <span class="badge">117</span></button>
+        <button class="tab-btn type-tab" data-type="국립">국립 <span class="badge">27</span></button>
+        <button class="tab-btn type-tab" data-type="공립">공립 <span class="badge">2</span></button>
+        <button class="tab-btn type-tab" data-type="사립">사립 <span class="badge">88</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-count" id="resultCount">총 <strong>117</strong>개 대학 표시</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th class="th-num">#</th><th class="th-name">대학명</th><th class="th-region">지역</th><th class="th-type">구분</th><th class="th-link">입학처 홈페이지</th></tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr data-region="서울" data-type="국립">
+              <td class="cell-num">1</td>
+              <td class="cell-name">서울대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://admission.snu.ac.kr/" target="_blank" rel="noopener">https://admission.snu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">2</td>
+              <td class="cell-name">연세대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.yonsei.ac.kr/" target="_blank" rel="noopener">https://admission.yonsei.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">3</td>
+              <td class="cell-name">고려대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://oku.korea.ac.kr/" target="_blank" rel="noopener">https://oku.korea.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">4</td>
+              <td class="cell-name">성균관대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.skku.edu/" target="_blank" rel="noopener">https://admission.skku.edu <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">5</td>
+              <td class="cell-name">한양대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://go.hanyang.ac.kr/" target="_blank" rel="noopener">https://go.hanyang.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">6</td>
+              <td class="cell-name">서강대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.sogang.ac.kr/enter/html/main/index.asp" target="_blank" rel="noopener">https://admission.sogang.ac.kr/enter/html/main/index.asp <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">7</td>
+              <td class="cell-name">이화여자대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.ewha.ac.kr/" target="_blank" rel="noopener">https://admission.ewha.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">8</td>
+              <td class="cell-name">중앙대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.cau.ac.kr/main.do" target="_blank" rel="noopener">https://admission.cau.ac.kr/main.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">9</td>
+              <td class="cell-name">경희대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://iphak.khu.ac.kr/" target="_blank" rel="noopener">https://iphak.khu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">10</td>
+              <td class="cell-name">한국외국어대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://adms.hufs.ac.kr/index.do" target="_blank" rel="noopener">https://adms.hufs.ac.kr/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="공립">
+              <td class="cell-num">11</td>
+              <td class="cell-name">서울시립대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-public">공립</span></td>
+              <td class="cell-link"><a href="https://admission.uos.ac.kr/" target="_blank" rel="noopener">https://admission.uos.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">12</td>
+              <td class="cell-name">건국대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://enter.konkuk.ac.kr/main.do" target="_blank" rel="noopener">https://enter.konkuk.ac.kr/main.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">13</td>
+              <td class="cell-name">동국대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.dongguk.edu/" target="_blank" rel="noopener">https://ipsi.dongguk.edu <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">14</td>
+              <td class="cell-name">홍익대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.hongik.ac.kr/main" target="_blank" rel="noopener">https://admission.hongik.ac.kr/main <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">15</td>
+              <td class="cell-name">숙명여자대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.sookmyung.ac.kr/admission/html/main/main.asp" target="_blank" rel="noopener">https://admission.sookmyung.ac.kr/admission/html/main/main.asp <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">16</td>
+              <td class="cell-name">숭실대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://iphak.ssu.ac.kr/" target="_blank" rel="noopener">https://iphak.ssu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">17</td>
+              <td class="cell-name">세종대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.sejong.ac.kr/" target="_blank" rel="noopener">https://ipsi.sejong.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">18</td>
+              <td class="cell-name">국민대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.kookmin.ac.kr/" target="_blank" rel="noopener">https://admission.kookmin.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">19</td>
+              <td class="cell-name">광운대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://iphak.kw.ac.kr/main.php" target="_blank" rel="noopener">https://iphak.kw.ac.kr/main.php <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">20</td>
+              <td class="cell-name">명지대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://iphak.mju.ac.kr/" target="_blank" rel="noopener">https://iphak.mju.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">21</td>
+              <td class="cell-name">덕성여자대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.duksung.ac.kr/iphak/main.do" target="_blank" rel="noopener">https://www.duksung.ac.kr/iphak/main.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">22</td>
+              <td class="cell-name">동덕여자대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.dongduk.ac.kr/" target="_blank" rel="noopener">https://ipsi.dongduk.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">23</td>
+              <td class="cell-name">서울여자대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.swu.ac.kr/" target="_blank" rel="noopener">https://admission.swu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">24</td>
+              <td class="cell-name">성신여자대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.sungshin.ac.kr/" target="_blank" rel="noopener">https://admission.sungshin.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">25</td>
+              <td class="cell-name">한성대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://enter.hansung.ac.kr/" target="_blank" rel="noopener">https://enter.hansung.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">26</td>
+              <td class="cell-name">삼육대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.syu.ac.kr/" target="_blank" rel="noopener">https://ipsi.syu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">27</td>
+              <td class="cell-name">상명대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.smu.ac.kr/" target="_blank" rel="noopener">https://admission.smu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">28</td>
+              <td class="cell-name">가톨릭대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.catholic.ac.kr/" target="_blank" rel="noopener">https://ipsi.catholic.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">29</td>
+              <td class="cell-name">서경대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://go.skuniv.ac.kr/" target="_blank" rel="noopener">https://go.skuniv.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="국립">
+              <td class="cell-num">30</td>
+              <td class="cell-name">한국체육대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://www.knsu.ac.kr/ipsi/index.do" target="_blank" rel="noopener">https://www.knsu.ac.kr/ipsi/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="사립">
+              <td class="cell-num">31</td>
+              <td class="cell-name">추계예술대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://enter.chugye.ac.kr/main.do" target="_blank" rel="noopener">https://enter.chugye.ac.kr/main.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="서울" data-type="국립">
+              <td class="cell-num">32</td>
+              <td class="cell-name">서울과학기술대학교</td>
+              <td class="cell-region"><span class="region-label">서울</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://admission.seoultech.ac.kr/" target="_blank" rel="noopener">https://admission.seoultech.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">33</td>
+              <td class="cell-name">아주대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.iajou.ac.kr/" target="_blank" rel="noopener">https://www.iajou.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">34</td>
+              <td class="cell-name">경기대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://enter.kyonggi.ac.kr/index.do" target="_blank" rel="noopener">https://enter.kyonggi.ac.kr/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="인천" data-type="사립">
+              <td class="cell-num">35</td>
+              <td class="cell-name">인하대학교</td>
+              <td class="cell-region"><span class="region-label">인천</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.inha.ac.kr/" target="_blank" rel="noopener">https://admission.inha.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">36</td>
+              <td class="cell-name">가천대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.gachon.ac.kr/" target="_blank" rel="noopener">https://admission.gachon.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">37</td>
+              <td class="cell-name">단국대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.dankook.ac.kr/intro.html" target="_blank" rel="noopener">https://ipsi.dankook.ac.kr/intro.html <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">38</td>
+              <td class="cell-name">수원대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.suwon.ac.kr/index.html" target="_blank" rel="noopener">https://www.suwon.ac.kr/index.html#none <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">39</td>
+              <td class="cell-name">성결대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.sungkyul.ac.kr/" target="_blank" rel="noopener">https://ipsi.sungkyul.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">40</td>
+              <td class="cell-name">대진대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.daejin.ac.kr/main.do" target="_blank" rel="noopener">https://admission.daejin.ac.kr/main.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="인천" data-type="공립">
+              <td class="cell-num">41</td>
+              <td class="cell-name">인천대학교</td>
+              <td class="cell-region"><span class="region-label">인천</span></td>
+              <td class="cell-type"><span class="tag tag-public">공립</span></td>
+              <td class="cell-link"><a href="https://admission.inu.ac.kr/main.do" target="_blank" rel="noopener">https://admission.inu.ac.kr/main.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">42</td>
+              <td class="cell-name">차의과학대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.cha.ac.kr/" target="_blank" rel="noopener">https://admission.cha.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">43</td>
+              <td class="cell-name">한신대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ent.hs.ac.kr/" target="_blank" rel="noopener">https://ent.hs.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">44</td>
+              <td class="cell-name">강남대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.kangnam.ac.kr/kangnam/1026/subview.do" target="_blank" rel="noopener">https://www.kangnam.ac.kr/kangnam/1026/subview.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">45</td>
+              <td class="cell-name">협성대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://iphak.uhs.ac.kr/jungsi/mojip.do" target="_blank" rel="noopener">https://iphak.uhs.ac.kr/jungsi/mojip.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">46</td>
+              <td class="cell-name">평택대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://entrance.ptu.ac.kr/" target="_blank" rel="noopener">https://entrance.ptu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">47</td>
+              <td class="cell-name">용인대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.yongin.ac.kr/index.do" target="_blank" rel="noopener">https://ipsi.yongin.ac.kr/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">48</td>
+              <td class="cell-name">한양대학교(ERICA)</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://go.hanyang.ac.kr/" target="_blank" rel="noopener">https://go.hanyang.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경기" data-type="사립">
+              <td class="cell-num">49</td>
+              <td class="cell-name">한국항공대학교</td>
+              <td class="cell-region"><span class="region-label">경기</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ibhak.kau.ac.kr/" target="_blank" rel="noopener">https://ibhak.kau.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="강원" data-type="국립">
+              <td class="cell-num">50</td>
+              <td class="cell-name">강원대학교</td>
+              <td class="cell-region"><span class="region-label">강원</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://admission.kangwon.ac.kr/" target="_blank" rel="noopener">https://admission.kangwon.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="강원" data-type="국립">
+              <td class="cell-num">51</td>
+              <td class="cell-name">강릉원주대학교</td>
+              <td class="cell-region"><span class="region-label">강원</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://iphak.gwnu.ac.kr/sites/iphak/index.do" target="_blank" rel="noopener">https://iphak.gwnu.ac.kr/sites/iphak/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="강원" data-type="사립">
+              <td class="cell-num">52</td>
+              <td class="cell-name">한림대학교</td>
+              <td class="cell-region"><span class="region-label">강원</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://admission.hallym.ac.kr/admission/index.do" target="_blank" rel="noopener">https://admission.hallym.ac.kr/admission/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="강원" data-type="사립">
+              <td class="cell-num">53</td>
+              <td class="cell-name">상지대학교</td>
+              <td class="cell-region"><span class="region-label">강원</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.sangji.ac.kr/go/index.do;jsessionid=EB2769EA6B21FF1B618E3AF13FAF0090" target="_blank" rel="noopener">https://www.sangji.ac.kr/go/index.do;jsessionid=EB2769EA6B21FF1B618E3AF13FAF0090 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="강원" data-type="사립">
+              <td class="cell-num">54</td>
+              <td class="cell-name">가톨릭관동대학교</td>
+              <td class="cell-region"><span class="region-label">강원</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.cku.ac.kr/iphak/index.do" target="_blank" rel="noopener">https://www.cku.ac.kr/iphak/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="강원" data-type="사립">
+              <td class="cell-num">55</td>
+              <td class="cell-name">연세대학교(미래)</td>
+              <td class="cell-region"><span class="region-label">강원</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://mirae.yonsei.ac.kr/wj/2349/subview.do" target="_blank" rel="noopener">https://mirae.yonsei.ac.kr/wj/2349/subview.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충북" data-type="국립">
+              <td class="cell-num">56</td>
+              <td class="cell-name">충북대학교</td>
+              <td class="cell-region"><span class="region-label">충북</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://ipsi.chungbuk.ac.kr/" target="_blank" rel="noopener">https://ipsi.chungbuk.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충남" data-type="국립">
+              <td class="cell-num">57</td>
+              <td class="cell-name">충남대학교</td>
+              <td class="cell-region"><span class="region-label">충남</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://ipsi.cnu.ac.kr/" target="_blank" rel="noopener">https://ipsi.cnu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충남" data-type="국립">
+              <td class="cell-num">58</td>
+              <td class="cell-name">공주대학교</td>
+              <td class="cell-region"><span class="region-label">충남</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://ipsi.kongju.ac.kr/" target="_blank" rel="noopener">https://ipsi.kongju.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충남" data-type="국립">
+              <td class="cell-num">59</td>
+              <td class="cell-name">한국기술교육대학교</td>
+              <td class="cell-region"><span class="region-label">충남</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://www.koreatech.ac.kr/index.es?sid=a4" target="_blank" rel="noopener">https://www.koreatech.ac.kr/index.es?sid=a4 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충남" data-type="사립">
+              <td class="cell-num">60</td>
+              <td class="cell-name">순천향대학교</td>
+              <td class="cell-region"><span class="region-label">충남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.sch.ac.kr/" target="_blank" rel="noopener">https://ipsi.sch.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충남" data-type="사립">
+              <td class="cell-num">61</td>
+              <td class="cell-name">백석대학교</td>
+              <td class="cell-region"><span class="region-label">충남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.bu.ac.kr/" target="_blank" rel="noopener">https://ipsi.bu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충남" data-type="사립">
+              <td class="cell-num">62</td>
+              <td class="cell-name">남서울대학교</td>
+              <td class="cell-region"><span class="region-label">충남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://consult.mncapro.co.kr/solution/nsuipsi" target="_blank" rel="noopener">https://consult.mncapro.co.kr/solution/nsuipsi <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충남" data-type="사립">
+              <td class="cell-num">63</td>
+              <td class="cell-name">호서대학교</td>
+              <td class="cell-region"><span class="region-label">충남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.hoseo.ac.kr/" target="_blank" rel="noopener">https://ipsi.hoseo.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충남" data-type="사립">
+              <td class="cell-num">64</td>
+              <td class="cell-name">건양대학교</td>
+              <td class="cell-region"><span class="region-label">충남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.konyang.ac.kr/" target="_blank" rel="noopener">https://ipsi.konyang.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충남" data-type="사립">
+              <td class="cell-num">65</td>
+              <td class="cell-name">나사렛대학교</td>
+              <td class="cell-region"><span class="region-label">충남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.kornu.ac.kr/sites/ipsi/index.do" target="_blank" rel="noopener">https://ipsi.kornu.ac.kr/sites/ipsi/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충북" data-type="사립">
+              <td class="cell-num">66</td>
+              <td class="cell-name">청주대학교</td>
+              <td class="cell-region"><span class="region-label">충북</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.cju.ac.kr/ipsi/index.do" target="_blank" rel="noopener">https://www.cju.ac.kr/ipsi/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="충북" data-type="사립">
+              <td class="cell-num">67</td>
+              <td class="cell-name">서원대학교</td>
+              <td class="cell-region"><span class="region-label">충북</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.seowon.ac.kr/iphak/index.do" target="_blank" rel="noopener">https://www.seowon.ac.kr/iphak/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="대전" data-type="국립">
+              <td class="cell-num">68</td>
+              <td class="cell-name">한밭대학교</td>
+              <td class="cell-region"><span class="region-label">대전</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://www.hanbat.ac.kr/admission/" target="_blank" rel="noopener">https://www.hanbat.ac.kr/admission/ <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="대전" data-type="사립">
+              <td class="cell-num">69</td>
+              <td class="cell-name">한남대학교</td>
+              <td class="cell-region"><span class="region-label">대전</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ibsi.hannam.ac.kr/" target="_blank" rel="noopener">https://ibsi.hannam.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="대전" data-type="사립">
+              <td class="cell-num">70</td>
+              <td class="cell-name">배재대학교</td>
+              <td class="cell-region"><span class="region-label">대전</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://enter.pcu.ac.kr/" target="_blank" rel="noopener">https://enter.pcu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="대전" data-type="사립">
+              <td class="cell-num">71</td>
+              <td class="cell-name">우송대학교</td>
+              <td class="cell-region"><span class="region-label">대전</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ent.wsu.ac.kr/" target="_blank" rel="noopener">https://ent.wsu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="대전" data-type="사립">
+              <td class="cell-num">72</td>
+              <td class="cell-name">목원대학교</td>
+              <td class="cell-region"><span class="region-label">대전</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://enter.mokwon.ac.kr/" target="_blank" rel="noopener">https://enter.mokwon.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="전북" data-type="국립">
+              <td class="cell-num">73</td>
+              <td class="cell-name">전북대학교</td>
+              <td class="cell-region"><span class="region-label">전북</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://enter.jbnu.ac.kr/" target="_blank" rel="noopener">https://enter.jbnu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="전남" data-type="국립">
+              <td class="cell-num">74</td>
+              <td class="cell-name">전남대학교</td>
+              <td class="cell-region"><span class="region-label">전남</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://admission.jnu.ac.kr/" target="_blank" rel="noopener">https://admission.jnu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="전남" data-type="국립">
+              <td class="cell-num">75</td>
+              <td class="cell-name">목포대학교</td>
+              <td class="cell-region"><span class="region-label">전남</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://ipsi.mokpo.ac.kr/" target="_blank" rel="noopener">https://ipsi.mokpo.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="전남" data-type="국립">
+              <td class="cell-num">76</td>
+              <td class="cell-name">순천대학교</td>
+              <td class="cell-region"><span class="region-label">전남</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://www.scnu.ac.kr/iphak/main.do" target="_blank" rel="noopener">https://www.scnu.ac.kr/iphak/main.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="전북" data-type="사립">
+              <td class="cell-num">77</td>
+              <td class="cell-name">원광대학교</td>
+              <td class="cell-region"><span class="region-label">전북</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.wku.ac.kr/" target="_blank" rel="noopener">https://ipsi.wku.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="전북" data-type="사립">
+              <td class="cell-num">78</td>
+              <td class="cell-name">전주대학교</td>
+              <td class="cell-region"><span class="region-label">전북</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://iphak.jj.ac.kr/" target="_blank" rel="noopener">https://iphak.jj.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="전북" data-type="사립">
+              <td class="cell-num">79</td>
+              <td class="cell-name">우석대학교</td>
+              <td class="cell-region"><span class="region-label">전북</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://enter.woosuk.ac.kr/" target="_blank" rel="noopener">https://enter.woosuk.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="전남" data-type="사립">
+              <td class="cell-num">80</td>
+              <td class="cell-name">동신대학교</td>
+              <td class="cell-region"><span class="region-label">전남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.dsu.ac.kr/dsu/1001/subview.do" target="_blank" rel="noopener">https://www.dsu.ac.kr/dsu/1001/subview.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="전남" data-type="사립">
+              <td class="cell-num">81</td>
+              <td class="cell-name">세한대학교</td>
+              <td class="cell-region"><span class="region-label">전남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.sehan.ac.kr/sehan/1004/subview.do" target="_blank" rel="noopener">https://www.sehan.ac.kr/sehan/1004/subview.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="광주" data-type="사립">
+              <td class="cell-num">82</td>
+              <td class="cell-name">조선대학교</td>
+              <td class="cell-region"><span class="region-label">광주</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://i.chosun.ac.kr/intro" target="_blank" rel="noopener">https://i.chosun.ac.kr/intro <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="광주" data-type="사립">
+              <td class="cell-num">83</td>
+              <td class="cell-name">광주대학교</td>
+              <td class="cell-region"><span class="region-label">광주</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://iphak.gwangju.ac.kr/" target="_blank" rel="noopener">https://iphak.gwangju.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="광주" data-type="사립">
+              <td class="cell-num">84</td>
+              <td class="cell-name">호남대학교</td>
+              <td class="cell-region"><span class="region-label">광주</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://enter.honam.ac.kr/" target="_blank" rel="noopener">https://enter.honam.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="광주" data-type="사립">
+              <td class="cell-num">85</td>
+              <td class="cell-name">광주여자대학교</td>
+              <td class="cell-region"><span class="region-label">광주</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.kwu.ac.kr/" target="_blank" rel="noopener">https://ipsi.kwu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경북" data-type="국립">
+              <td class="cell-num">86</td>
+              <td class="cell-name">경북대학교</td>
+              <td class="cell-region"><span class="region-label">경북</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://ipsi1.knu.ac.kr/" target="_blank" rel="noopener">https://ipsi1.knu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경남" data-type="국립">
+              <td class="cell-num">87</td>
+              <td class="cell-name">경상국립대학교</td>
+              <td class="cell-region"><span class="region-label">경남</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://www.gnu.ac.kr/new/main.do" target="_blank" rel="noopener">https://www.gnu.ac.kr/new/main.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경북" data-type="국립">
+              <td class="cell-num">88</td>
+              <td class="cell-name">국립경국대</td>
+              <td class="cell-region"><span class="region-label">경북</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://www.gknu.ac.kr/main/html.do?menu_idx=2" target="_blank" rel="noopener">https://www.gknu.ac.kr/main/html.do?menu_idx=2 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경남" data-type="국립">
+              <td class="cell-num">89</td>
+              <td class="cell-name">창원대학교</td>
+              <td class="cell-region"><span class="region-label">경남</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://www.changwon.ac.kr/ipsi/main.do" target="_blank" rel="noopener">https://www.changwon.ac.kr/ipsi/main.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경북" data-type="국립">
+              <td class="cell-num">90</td>
+              <td class="cell-name">금오공과대학교</td>
+              <td class="cell-region"><span class="region-label">경북</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://www.kumoh.ac.kr/ipsi/index.do" target="_blank" rel="noopener">https://www.kumoh.ac.kr/ipsi/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경남" data-type="국립">
+              <td class="cell-num">91</td>
+              <td class="cell-name">한국해양대학교</td>
+              <td class="cell-region"><span class="region-label">경남</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://www.kmou.ac.kr/ipsi/" target="_blank" rel="noopener">https://www.kmou.ac.kr/ipsi/ <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경북" data-type="사립">
+              <td class="cell-num">92</td>
+              <td class="cell-name">영남대학교</td>
+              <td class="cell-region"><span class="region-label">경북</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://enter.yu.ac.kr/" target="_blank" rel="noopener">https://enter.yu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경북" data-type="사립">
+              <td class="cell-num">93</td>
+              <td class="cell-name">계명대학교</td>
+              <td class="cell-region"><span class="region-label">경북</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.gokmu.ac.kr/" target="_blank" rel="noopener">https://www.gokmu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경남" data-type="사립">
+              <td class="cell-num">94</td>
+              <td class="cell-name">경남대학교</td>
+              <td class="cell-region"><span class="region-label">경남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.kyungnam.ac.kr/" target="_blank" rel="noopener">https://ipsi.kyungnam.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경남" data-type="사립">
+              <td class="cell-num">95</td>
+              <td class="cell-name">인제대학교</td>
+              <td class="cell-region"><span class="region-label">경남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://iphak.inje.ac.kr/" target="_blank" rel="noopener">https://iphak.inje.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경북" data-type="사립">
+              <td class="cell-num">96</td>
+              <td class="cell-name">대구대학교</td>
+              <td class="cell-region"><span class="region-label">경북</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.daegu.ac.kr/" target="_blank" rel="noopener">https://ipsi.daegu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경북" data-type="사립">
+              <td class="cell-num">97</td>
+              <td class="cell-name">대구가톨릭대학교</td>
+              <td class="cell-region"><span class="region-label">경북</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ibsi.cu.ac.kr/" target="_blank" rel="noopener">https://ibsi.cu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경남" data-type="사립">
+              <td class="cell-num">98</td>
+              <td class="cell-name">동서대학교</td>
+              <td class="cell-region"><span class="region-label">경남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.dongseo.ac.kr/" target="_blank" rel="noopener">https://ipsi.dongseo.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경남" data-type="사립">
+              <td class="cell-num">99</td>
+              <td class="cell-name">신라대학교</td>
+              <td class="cell-region"><span class="region-label">경남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.silla.ac.kr/" target="_blank" rel="noopener">https://ipsi.silla.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경남" data-type="사립">
+              <td class="cell-num">100</td>
+              <td class="cell-name">가야대학교</td>
+              <td class="cell-region"><span class="region-label">경남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.kaya.ac.kr/" target="_blank" rel="noopener">https://ipsi.kaya.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경남" data-type="사립">
+              <td class="cell-num">101</td>
+              <td class="cell-name">영산대학교</td>
+              <td class="cell-region"><span class="region-label">경남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.ysu.ac.kr/ysu/1010/subview.do" target="_blank" rel="noopener">https://www.ysu.ac.kr/ysu/1010/subview.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경남" data-type="사립">
+              <td class="cell-num">102</td>
+              <td class="cell-name">한동대학교</td>
+              <td class="cell-region"><span class="region-label">경남</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.handong.edu/kor/admission" target="_blank" rel="noopener">https://www.handong.edu/kor/admission <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="부산" data-type="국립">
+              <td class="cell-num">103</td>
+              <td class="cell-name">부산대학교</td>
+              <td class="cell-region"><span class="region-label">부산</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://go.pusan.ac.kr/" target="_blank" rel="noopener">https://go.pusan.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="울산" data-type="사립">
+              <td class="cell-num">104</td>
+              <td class="cell-name">울산대학교</td>
+              <td class="cell-region"><span class="region-label">울산</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://iphak.ulsan.ac.kr/" target="_blank" rel="noopener">https://iphak.ulsan.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="부산" data-type="국립">
+              <td class="cell-num">105</td>
+              <td class="cell-name">부경대학교</td>
+              <td class="cell-region"><span class="region-label">부산</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://iphak.pknu.ac.kr/" target="_blank" rel="noopener">https://iphak.pknu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="부산" data-type="사립">
+              <td class="cell-num">106</td>
+              <td class="cell-name">부산외국어대학교</td>
+              <td class="cell-region"><span class="region-label">부산</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://enter.bufs.ac.kr/" target="_blank" rel="noopener">https://enter.bufs.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="부산" data-type="사립">
+              <td class="cell-num">107</td>
+              <td class="cell-name">동아대학교</td>
+              <td class="cell-region"><span class="region-label">부산</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ent.donga.ac.kr/" target="_blank" rel="noopener">https://ent.donga.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="부산" data-type="사립">
+              <td class="cell-num">108</td>
+              <td class="cell-name">동의대학교</td>
+              <td class="cell-region"><span class="region-label">부산</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://www.deu.ac.kr/Admissions/index.htm" target="_blank" rel="noopener">https://www.deu.ac.kr/Admissions/index.htm <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="부산" data-type="사립">
+              <td class="cell-num">109</td>
+              <td class="cell-name">고신대학교</td>
+              <td class="cell-region"><span class="region-label">부산</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://dream.kosin.ac.kr/" target="_blank" rel="noopener">https://dream.kosin.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="부산" data-type="사립">
+              <td class="cell-num">110</td>
+              <td class="cell-name">경성대학교</td>
+              <td class="cell-region"><span class="region-label">부산</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://ipsi.ks.ac.kr/" target="_blank" rel="noopener">https://ipsi.ks.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="울산" data-type="국립">
+              <td class="cell-num">111</td>
+              <td class="cell-name">UNIST</td>
+              <td class="cell-region"><span class="region-label">울산</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://adm-u.unist.ac.kr/admission/index.do" target="_blank" rel="noopener">https://adm-u.unist.ac.kr/admission/index.do <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="제주" data-type="국립">
+              <td class="cell-num">112</td>
+              <td class="cell-name">제주대학교</td>
+              <td class="cell-region"><span class="region-label">제주</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://ibsi.jejunu.ac.kr/" target="_blank" rel="noopener">https://ibsi.jejunu.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="제주" data-type="사립">
+              <td class="cell-num">113</td>
+              <td class="cell-name">제주국제대학교</td>
+              <td class="cell-region"><span class="region-label">제주</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://apply.jeju.ac.kr/" target="_blank" rel="noopener">https://apply.jeju.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="대전" data-type="국립">
+              <td class="cell-num">114</td>
+              <td class="cell-name">KAIST</td>
+              <td class="cell-region"><span class="region-label">대전</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://admission.kaist.ac.kr/" target="_blank" rel="noopener">https://admission.kaist.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="경북" data-type="사립">
+              <td class="cell-num">115</td>
+              <td class="cell-name">POSTECH</td>
+              <td class="cell-region"><span class="region-label">경북</span></td>
+              <td class="cell-type"><span class="tag tag-private">사립</span></td>
+              <td class="cell-link"><a href="https://adm-u.postech.ac.kr/" target="_blank" rel="noopener">https://adm-u.postech.ac.kr/ <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="광주" data-type="국립">
+              <td class="cell-num">116</td>
+              <td class="cell-name">GIST</td>
+              <td class="cell-region"><span class="region-label">광주</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://admission.gist.ac.kr/" target="_blank" rel="noopener">https://admission.gist.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+            <tr data-region="대구" data-type="국립">
+              <td class="cell-num">117</td>
+              <td class="cell-name">DGIST</td>
+              <td class="cell-region"><span class="region-label">대구</span></td>
+              <td class="cell-type"><span class="tag tag-national">국립</span></td>
+              <td class="cell-link"><a href="https://admission.dgist.ac.kr/" target="_blank" rel="noopener">https://admission.dgist.ac.kr <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="no-results" id="noResults">검색 결과가 없습니다.</div>
+  </div>
+
+  <div class="footer">
+    양현고등학교 · 전국 대학 입학처 링크 모음 · 2026
+  </div>
+
+  <script>
+    const regionTabs = document.querySelectorAll('.region-tab');
+    const typeTabs = document.querySelectorAll('.type-tab');
+    const rows = document.querySelectorAll('#tableBody tr');
+    const searchInput = document.getElementById('search');
+    const noResults = document.getElementById('noResults');
+    const resultCount = document.getElementById('resultCount');
+
+    let activeRegion = '전체';
+    let activeType = '전체';
+    let searchQuery = '';
+
+    function applyFilters() {
+      let count = 0;
+      let visibleIdx = 0;
+      rows.forEach(tr => {
+        const rg = tr.dataset.region;
+        const tp = tr.dataset.type;
+        const text = tr.textContent.toLowerCase();
+
+        const matchRegion = activeRegion === '전체' || rg === activeRegion;
+        const matchType = activeType === '전체' || tp === activeType;
+        const matchSearch = !searchQuery || text.includes(searchQuery);
+
+        if (matchRegion && matchType && matchSearch) {
+          tr.classList.remove('hidden-row');
+          visibleIdx++;
+          tr.querySelector('.cell-num').textContent = visibleIdx;
+          count++;
+        } else {
+          tr.classList.add('hidden-row');
+        }
+      });
+      noResults.style.display = count === 0 ? 'block' : 'none';
+      resultCount.innerHTML = '총 <strong>' + count + '</strong>개 대학 표시';
+
+      // Update type tab badges dynamically based on current region & search
+      typeTabs.forEach(btn => {
+        const t = btn.dataset.type;
+        let c = 0;
+        rows.forEach(tr => {
+          const rg = tr.dataset.region;
+          const tp = tr.dataset.type;
+          const text = tr.textContent.toLowerCase();
+          const matchRegion = activeRegion === '전체' || rg === activeRegion;
+          const matchType = t === '전체' || tp === t;
+          const matchSearch = !searchQuery || text.includes(searchQuery);
+          if (matchRegion && matchType && matchSearch) c++;
+        });
+        btn.querySelector('.badge').textContent = c;
+      });
+
+      // Update region tab badges dynamically based on current type & search
+      regionTabs.forEach(btn => {
+        const r = btn.dataset.region;
+        let c = 0;
+        rows.forEach(tr => {
+          const rg = tr.dataset.region;
+          const tp = tr.dataset.type;
+          const text = tr.textContent.toLowerCase();
+          const matchRegion = r === '전체' || rg === r;
+          const matchType = activeType === '전체' || tp === activeType;
+          const matchSearch = !searchQuery || text.includes(searchQuery);
+          if (matchRegion && matchType && matchSearch) c++;
+        });
+        btn.querySelector('.badge').textContent = c;
+      });
+    }
+
+    regionTabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        regionTabs.forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        activeRegion = btn.dataset.region;
+        applyFilters();
+      });
+    });
+
+    typeTabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        typeTabs.forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        activeType = btn.dataset.type;
+        applyFilters();
+      });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      applyFilters();
+    });
+
+    applyFilters();
+  </script>
+</body>
+</html>
